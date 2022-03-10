@@ -71,7 +71,51 @@ const menu = [
     img: "./images/item-9.jpeg",
     desc: `skateboard fam synth authentic semiotics. Live-edge lyft af, edison bulb yuccie crucifix microdosing.`,
   },
+  {
+    id: 10,
+    title: "Stake",
+    category: "Stake",
+    price: 46.99,
+    img: "./images/item-10.jpeg",
+    desc: `This is a very juice steak, 3/4 prepared. Tenemos menos espacios para rellenar la descripcion`,
+  },
 ];
+
+const btsContainer = document.querySelector(`.btn-container`);
+btsContainer.innerHTML = buttonsFromCategories(
+  obtenerLasCategoriasDelMenu(menu)
+);
+
+function obtenerLasCategoriasDelMenu(menu) {
+  let categorias = menu.reduce(
+    function (categoriasTemp, comida) {
+      if (!categoriasTemp.includes(comida.category))
+        categoriasTemp.push(comida.category);
+      return categoriasTemp;
+    },
+    [`all`]
+  );
+  console.log(categorias);
+  return categorias;
+}
+
+// function buttonsFromCategories(categorias) {
+//   let cuerpoHtmlDeBotones = ``;
+//   for (let index = 0; index < categorias.length; index++) {
+//     const element = categorias[index];
+//     cuerpoHtmlDeBotones += `<button type="button" class="filter-btn" data-id=${element}>${element}</button>`;
+//   }
+//   // console.log(cuerpoHtmlDeBotones);
+//   return cuerpoHtmlDeBotones;
+// }
+function buttonsFromCategories(categorias) {
+  let cuerpoHtmlDeBotones = ``;
+
+  categorias.forEach((element) => {
+    cuerpoHtmlDeBotones += `<button type="button" class="filter-btn" data-id=${element}>${element}</button>`;
+  });
+  return cuerpoHtmlDeBotones;
+}
 
 const sectionCenter = document.querySelector(`.section-center`);
 const filterBtns = document.querySelectorAll(".filter-btn");
